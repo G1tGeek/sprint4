@@ -7,7 +7,6 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-# Local tags with overridden Owner
 locals {
   tags = merge(
     {
@@ -20,5 +19,5 @@ locals {
 resource "aws_internet_gateway" "dev_igw" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 
-  tags = local.tags
+  tags = var.tags
 }
