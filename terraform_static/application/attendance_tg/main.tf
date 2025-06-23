@@ -24,7 +24,12 @@ resource "aws_lb_target_group" "attendance_tg" {
   vpc_id      = data.terraform_remote_state.vpc.outputs[var.vpc_state_output_name]
 
   health_check {
-    # default health check settings (e.g., path = "/", healthy_threshold = 3, etc.)
+    path                = "/api/v1/attendance/health"
+    healthy_threshold   = 3
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 60
+    matcher             = "200"
   }
 
   ip_address_type = "ipv4"
