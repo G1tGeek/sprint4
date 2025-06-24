@@ -1,13 +1,13 @@
 aws_region          = "us-east-2"
-remote_state_bucket = "dev-otms-statefile"
-vpc_state_key       = "network-skeleton/vpc/terraform.tfstate"
-subnet_state_key    = "network-skeleton/subnet/terraform.tfstate"
+remote_state_bucket = "mygurukulam-p14-tfstate"
+vpc_state_key       = "env/dev/network-skeleton/vpc/terraform.tfstate"
+subnet_state_key    = "env/dev/network-skeleton/subnet/terraform.tfstate"
 
-instance_name       = "dev-scylla"
+instance_name       = "scylla"
 instance_type       = "t2.medium"
-disk_size           = 20
+disk_size           = 8
 key_name            = "dev-tf"
-security_group_name = "dev-scylla-sg"
+security_group_name = "scylla-sg"
 
 sg_ingress_from_port = 0
 sg_ingress_to_port   = 0
