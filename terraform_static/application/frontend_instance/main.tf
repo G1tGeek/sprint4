@@ -1,37 +1,3 @@
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
-
-data "terraform_remote_state" "vpc" {
-  backend = "s3"
-  config = {
-    bucket = var.remote_state_bucket
-    key    = var.vpc_state_key
-    region = var.aws_region
-  }
-}
-
-data "terraform_remote_state" "subnet" {
-  backend = "s3"
-  config = {
-    bucket = var.remote_state_bucket
-    key    = var.subnet_state_key
-    region = var.aws_region
-  }
-}
-
 resource "aws_security_group" "frontend_sg" {
   name        = var.security_group_name
   description = "Temporary allow-all traffic"
@@ -52,14 +18,14 @@ resource "aws_security_group" "frontend_sg" {
   }
 
   tags = merge(var.standard_tags, {
-    Name = var.security_group_name
+    Name = local.prefixed_security_group_name
   })
 }
 
 resource "aws_instance" "frontend" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
-  subnet_id                   = data.terraform_remote_state.subnet.outputs.dev_frontend_subnet_id
+  subnet_id                   = data.terraform_remote_state.subnet.outputs.dev_database_subnet_id
   key_name                    = var.key_name
   associate_public_ip_address = false
 
@@ -70,6 +36,6 @@ resource "aws_instance" "frontend" {
   vpc_security_group_ids = [aws_security_group.frontend_sg.id]
 
   tags = merge(var.standard_tags, {
-    Name = var.instance_name
+    Name = local.prefixed_instance_name
   })
 }

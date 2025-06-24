@@ -9,6 +9,6 @@ output "salary_instance_id" {
 }
 
 output "salary_sg_id" {
-  description = "The security group ID of the salary instance"
+  description = "The instance ID of the salary instance"
   value       = aws_security_group.salary_sg.id
 }

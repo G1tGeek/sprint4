@@ -9,6 +9,6 @@ output "notification_instance_id" {
 }
 
 output "notification_sg_id" {
-  description = "The security group ID of the notification instance"
+  description = "The instance ID of the notification instance"
   value       = aws_security_group.notification_sg.id
 }

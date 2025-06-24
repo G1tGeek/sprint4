@@ -26,6 +26,11 @@ variable "instance_name" {
 variable "instance_type" {
   description = "Instance type"
   type        = string
+
+  validation {
+    condition     = contains(["t2.micro", "t2.small", "t2.medium", "t3.micro", "t3.small", "t3.medium"], var.instance_type)
+    error_message = "Invalid instance type. Allowed types are t2.micro, t2.small, t2.medium, t3.micro, t3.small, and t3.medium."
+  }
 }
 
 variable "disk_size" {

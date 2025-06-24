@@ -9,6 +9,6 @@ output "attendance_instance_id" {
 }
 
 output "attendance_sg_id" {
-  description = "The security group ID of the attendance instance"
+  description = "The instance ID of the attendance instance"
   value       = aws_security_group.attendance_sg.id
 }
