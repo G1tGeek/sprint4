@@ -1,45 +1,3 @@
-# Remote State Data Sources
-data "terraform_remote_state" "vpc" {
-  backend = "s3"
-
-  config = {
-    bucket = var.s3_bucket
-    key    = var.vpc_state_file
-    region = var.aws_region
-  }
-}
-
-data "terraform_remote_state" "subnet" {
-  backend = "s3"
-
-  config = {
-    bucket = var.s3_bucket
-    key    = var.subnet_state_file
-    region = var.aws_region
-  }
-}
-
-data "terraform_remote_state" "igw" {
-  backend = "s3"
-
-  config = {
-    bucket = var.s3_bucket
-    key    = var.igw_state_file
-    region = var.aws_region
-  }
-}
-
-data "terraform_remote_state" "nat" {
-  backend = "s3"
-
-  config = {
-    bucket = var.s3_bucket
-    key    = var.nat_state_file
-    region = var.aws_region
-  }
-}
-
-# Public Route Table
 resource "aws_route_table" "public_rt" {
   vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 
@@ -51,7 +9,7 @@ resource "aws_route_table" "public_rt" {
   tags = merge(
     var.standard_tags,
     {
-      Name = "dev-public-rt"
+      Name = local.prefixed_public_rt_name
     }
   )
 }
@@ -68,7 +26,7 @@ resource "aws_route_table" "private_rt" {
   tags = merge(
     var.standard_tags,
     {
-      Name = "dev-private-rt"
+      Name = local.prefixed_private_rt_name
     }
   )
 }

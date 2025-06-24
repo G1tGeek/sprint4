@@ -1,17 +1,17 @@
 region = "us-east-2"
 
-s3_bucket = "dev-otms-statefile"
+s3_bucket = "mygurukulam-p14-tfstate"
 
-vpc_state_key = "network-skeleton/vpc/terraform.tfstate"
+vpc_state_key = "env/dev/network-skeleton/vpc/terraform.tfstate"
 
 public_subnets = [
   {
-    name       = "dev-public-subnet-1"
+    name       = "public-subnet-1"
     cidr_block = "10.0.0.0/28"
     az         = "us-east-2a"
   },
   {
-    name       = "dev-public-subnet-2"
+    name       = "public-subnet-2"
     cidr_block = "10.0.0.16/28"
     az         = "us-east-2b"
   }
@@ -19,17 +19,17 @@ public_subnets = [
 
 private_subnets = [
   {
-    name       = "dev-frontend-subnet"
+    name       = "frontend-subnet"
     cidr_block = "10.0.0.32/28"
     az         = "us-east-2a"
   },
   {
-    name       = "dev-api-subnet"
+    name       = "api-subnet"
     cidr_block = "10.0.0.64/27"
     az         = "us-east-2a"
   },
   {
-    name       = "dev-database-subnet"
+    name       = "database-subnet"
     cidr_block = "10.0.0.96/28"
     az         = "us-east-2a"
   }

@@ -5,7 +5,7 @@ resource "aws_vpc" "dev_otms_vpc" {
 
   tags = merge(
     {
-      Name = var.vpc_name
+      Name = local.prefixed_vpc_name
     },
     var.standard_tags
   )

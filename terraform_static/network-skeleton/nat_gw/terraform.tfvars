@@ -1,8 +1,8 @@
 aws_region         = "us-east-2"
-s3_bucket          = "dev-otms-statefile"
-vpc_state_file     = "network-skeleton/vpc/terraform.tfstate"
-subnet_state_file  = "network-skeleton/subnet/terraform.tfstate"
-nat_gateway_name   = "dev-nat"
+s3_bucket          = "mygurukulam-p14-tfstate"
+vpc_state_file     = "env/dev/network-skeleton/vpc/terraform.tfstate"
+subnet_state_file  = "env/dev/network-skeleton/subnet/terraform.tfstate"
+nat_gateway_name   = "nat"
 
 standard_tags = {
   Application = "OTMS"

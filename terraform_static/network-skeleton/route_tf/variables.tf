@@ -36,3 +36,13 @@ variable "standard_tags" {
   description = "Standard tags for resources"
   type        = map(string)
 }
+
+variable "public_rt_name" {
+  description = "Standard tags for resources"
+  type        = string
+}
+
+variable "private_rt_name" {
+  description = "Standard tags for resources"
+  type        = string
+}
