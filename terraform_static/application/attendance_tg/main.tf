@@ -1,23 +1,5 @@
-data "terraform_remote_state" "vpc" {
-  backend = "s3"
-  config = {
-    bucket = "dev-otms-statefile"
-    key    = var.vpc_state_path
-    region = var.aws_region
-  }
-}
-
-data "terraform_remote_state" "attendance_instance" {
-  backend = "s3"
-  config = {
-    bucket = "dev-otms-statefile"
-    key    = var.instance_state_path
-    region = var.aws_region
-  }
-}
-
 resource "aws_lb_target_group" "attendance_tg" {
-  name        = var.target_group_name
+  name = local.prefixed_tg_name
   port        = var.port
   protocol    = var.protocol
   target_type = "instance"

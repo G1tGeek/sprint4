@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "dev-otms-statefile"
-    key            = "application/attendance/target-group/terraform.tfstate"
+    bucket         = "mygurukulam-p14-tfstate"
+    key            = "env/dev/application/attendance/target-group/terraform.tfstate"
     region         = "us-east-2"
-    dynamodb_table = "dev-otms-terraform-lock"
+    dynamodb_table = "mygurukulam-p14-tf-statelock"
   }
 }
