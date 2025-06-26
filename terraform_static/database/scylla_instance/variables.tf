@@ -18,6 +18,11 @@ variable "subnet_state_key" {
   type        = string
 }
 
+variable "sg_state_key" {
+  description = "S3 key path to Security group state file"
+  type        = string
+}
+
 variable "instance_name" {
   description = "Name of the EC2 instance"
   type        = string
@@ -43,50 +48,6 @@ variable "key_name" {
   type        = string
 }
 
-variable "security_group_name" {
-  description = "Name of the Security Group"
-  type        = string
-}
-
-variable "sg_ingress_from_port" {
-  type        = number
-  description = "Ingress from port"
-}
-
-variable "sg_ingress_to_port" {
-  type        = number
-  description = "Ingress to port"
-}
-
-variable "sg_ingress_protocol" {
-  type        = string
-  description = "Ingress protocol"
-}
-
-variable "sg_ingress_cidr" {
-  type        = string
-  description = "Ingress CIDR block"
-}
-
-variable "sg_egress_from_port" {
-  type        = number
-  description = "Egress from port"
-}
-
-variable "sg_egress_to_port" {
-  type        = number
-  description = "Egress to port"
-}
-
-variable "sg_egress_protocol" {
-  type        = string
-  description = "Egress protocol"
-}
-
-variable "sg_egress_cidr" {
-  type        = string
-  description = "Egress CIDR block"
-}
 
 variable "standard_tags" {
   description = "Standard project tags"

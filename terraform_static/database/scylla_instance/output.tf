@@ -7,8 +7,3 @@ output "scylla_instance_id" {
   description = "The instance ID of the scylla instance"
   value       = aws_instance.scylla.id
 }
-
-output "scylla_sg_id" {
-  description = "The instance ID of the scylla instance"
-  value       = aws_security_group.scylla_sg.id
-}
