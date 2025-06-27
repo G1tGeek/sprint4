@@ -1,8 +1,7 @@
 # General
 variable "aws_region" { type = string }
 variable "alb_name" { type = string }
-variable "certificate_arn" { type = string }
-variable "ssl_policy" { type = string }
+variable "security_group_name" { type = string }
 
 # Tags
 variable "standard_tags" {
@@ -30,30 +29,11 @@ variable "alb_sg_egress_rules" {
   }))
 }
 
-# HTTP -> HTTPS redirect
-variable "http_listener_port" { type = number }
-variable "https_listener_port" { type = number }
-
-# Redirect details
-variable "redirect_port" { type = string }
-variable "redirect_protocol" { type = string }
-variable "redirect_status_code" { type = string }
-variable "redirect_host" { type = string }
-
 # Remote state configs
 variable "remote_states" {
   type = map(object({
     bucket = string
     key    = string
     region = string
-  }))
-}
-
-# Path rules
-variable "routing_paths" {
-  type = list(object({
-    path_pattern      = string
-    priority          = number
-    target_group_name = string
   }))
 }
